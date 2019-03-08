@@ -1,0 +1,59 @@
+{
+	"properties": [
+		{
+			"name": "imageCode.source",
+			"type": "java.lang.String",
+			"description": "A description for 'imageCode.source'"
+		},
+		{
+			"name": "imageCode.length",
+			"type": "java.lang.String",
+			"description": "A description for 'imageCode.length'"
+		},
+		{
+			"name": "imageCode.source",
+			"type": "java.lang.String",
+			"description": "A description for 'imageCode.source'"
+		},
+		{
+			"name": "imageCode.height",
+			"type": "java.lang.String",
+			"description": "A description for 'imageCode.height'"
+		},
+		{
+			"name": "imageCode.height",
+			"type": "java.lang.String",
+			"description": "A description for 'imageCode.height'"
+		},
+		{
+			"name": "imageCode.type",
+			"type": "java.lang.String",
+			"description": "A description for 'imageCode.type'"
+		},
+		{
+			"name": "imageCode.expireIn",
+			"type": "java.lang.String",
+			"description": "A description for 'imageCode.expireIn'"
+		},
+		{
+			"name": "imageCode.width",
+			"type": "java.lang.String",
+			"description": "A description for 'imageCode.width'"
+		},
+		{
+			"name": "imageCode.randomLineCnt",
+			"type": "java.lang.String",
+			"description": "A description for 'imageCode.randomLineCnt'"
+		},
+		{
+			"name": "imageCode.fontSize",
+			"type": "java.lang.String",
+			"description": "A description for 'imageCode.fontSize'"
+		},
+		{
+			"name": "imageCode.jsonFileName",
+			"type": "java.lang.String",
+			"description": "A description for 'imageCode.jsonFileName'"
+		}
+	]
+}

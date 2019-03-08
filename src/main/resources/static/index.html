@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>测试图形验证码的发送与验证</title>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+</head>
+<body>
+	<span>图形验证码</span>
+	<br>
+	<img alt="图形验证码" src="" onclick="send()" id="img">
+	<br>
+	<input type="text" id="imgText" placeholder="请输入图形验证码">
+	<br>
+	<input type="button" id="btn" onclick="verify()" value="点击验证">
+	<script type="text/javascript">
+		var sendUrl = "/imageCode/send";
+		var verifyUrl = "/imageCode/verify";
+
+		$.ready()
+		{
+			send();
+		}
+		function send() {
+			$.ajax(sendUrl, {
+				type : "get",
+				success : function(data) {
+					var imgSrc = data.data;
+					$("#img").prop("src", imgSrc);
+				}
+			})
+		}
+
+		function verify() {
+			var imgText = $("#imgText").val();
+			$.ajax(verifyUrl, {
+				type : "post",
+				data : {
+					imageCode : imgText
+				},
+				success : function(data) {
+					alert(data.error_info);
+					send();
+					$("#imgText").val("");
+				}
+			})
+		}
+	</script>
+</body>
+</html>
