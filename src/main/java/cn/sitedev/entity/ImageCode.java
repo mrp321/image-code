@@ -38,6 +38,13 @@ public class ImageCode {
 	private int type;
 
 	/**
+	 * 无参构造器
+	 */
+	public ImageCode() {
+		super();
+	}
+
+	/**
 	 * 含参构造器
 	 * 
 	 * @author qchen

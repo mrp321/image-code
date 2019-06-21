@@ -4,11 +4,14 @@ import java.io.IOException;
 
 import javax.servlet.http.HttpSession;
 
-import org.springframework.beans.factory.annotation.Value;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+//import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import cn.sitedev.entity.ImageCode;
+import cn.sitedev.properties.ImageCodeProperties;
 import cn.sitedev.util.ImageCodeUtil;
 
 /**
@@ -21,75 +24,111 @@ import cn.sitedev.util.ImageCodeUtil;
  */
 @Service
 public class ImageCodeService {
+
+	private static final Logger log = LoggerFactory.getLogger(ImageCodeService.class);
+
+	/**
+	 * 图形验证码属性类
+	 */
+	private final ImageCodeProperties imageCodeProperties;
+
 	/**
 	 * 图形验证码位数
 	 */
-	@Value("${imageCode.length}")
-	private int IMAGE_CODE_LEN;
+	// @Value("${imageCode.length}")
+	private Integer IMAGE_CODE_LEN;
 	/**
 	 * 图形验证码类型:1:纯英文; 2: 纯中文
 	 */
-	@Value("${imageCode.type}")
-	private int IMAGE_CODE_TYPE;
+	// @Value("${imageCode.type}")
+	private Integer IMAGE_CODE_TYPE;
 
 	/**
 	 * 图形验证码有效期: 单位:s
 	 */
-	@Value("${imageCode.expireIn}")
-	private int IMAGE_CODE_EXPIREIN;
+	// @Value("${imageCode.expireIn}")
+	private Integer IMAGE_CODE_EXPIREIN;
 
 	/**
 	 * 图形验证码高度
 	 */
-	@Value("${imageCode.height}")
-	private int IMAGE_CODE_HEIGHT;
+	// @Value("${imageCode.height}")
+	private Integer IMAGE_CODE_HEIGHT;
 
 	/**
 	 * 图形验证码宽度
 	 */
-	@Value("${imageCode.width}")
-	private int IMAGE_CODE_WIDTH;
+	// @Value("${imageCode.width}")
+	private Integer IMAGE_CODE_WIDTH;
 
 	/**
 	 * 图形验证码随机条纹数
 	 */
-	@Value("${imageCode.randomLineCnt}")
-	private int IMAGE_CODE_RANDOM_LINE_CNT;
+	// @Value("${imageCode.randomLineCnt}")
+	private Integer IMAGE_CODE_RANDOM_LINE_CNT;
 
 	/**
 	 * 图形验证码来源
 	 */
-	@Value("${imageCode.source}")
-	private int IMAGE_CODE_SOURCE;
+	// @Value("${imageCode.source}")
+	private Integer IMAGE_CODE_SOURCE;
 
 	/**
 	 * 图形验证码json文件名
 	 */
-	@Value("${imageCode.jsonFileName}")
+	// @Value("${imageCode.jsonFileName}")
 	public String IMAGE_CODE_JSON_FILE_NAME;
 
 	/**
 	 * 字体大小
 	 */
-	@Value("${imageCode.fontSize}")
+	// @Value("${imageCode.fontSize}")
 	private Integer IMAGE_CODE_FONT_SIZE;
 
 	/**
 	 * 英文字体名
 	 */
-	@Value("${imageCode.fontEn}")
+	// @Value("${imageCode.fontEn}")
 	private String IMAGE_CODE_FONT_EN;
 
 	/**
 	 * 中文字体名
 	 */
-	@Value("${imageCode.fontCn}")
+	// @Value("${imageCode.fontCn}")
 	private String IMAGE_CODE_FONT_CN;
-
 	/**
 	 * 图形验证码session保存时的key
 	 */
 	public static final String IMAGE_CODE_SESSION_ATTR_KEY_PREFIX = "image_code_";
+
+	public ImageCodeService(ImageCodeProperties imageCodeProperties) {
+		super();
+		// 通过构造器直接注入ImageCodeProperties, 暂时无法直接通过@Autowired注解注入ImageCodeProperties组件
+		this.imageCodeProperties = imageCodeProperties;
+		log.info("获取图形验证码相关配置:" + imageCodeProperties);
+		// 图形验证码位数
+		IMAGE_CODE_LEN = imageCodeProperties.getLength();
+		// 图形验证码类型:1:纯英文; 2: 纯中文
+		IMAGE_CODE_TYPE = imageCodeProperties.getType();
+		// 图形验证码有效期: 单位:s
+		IMAGE_CODE_EXPIREIN = imageCodeProperties.getExpireIn();
+		// 图形验证码高度
+		IMAGE_CODE_HEIGHT = imageCodeProperties.getHeight();
+		// 图形验证码宽度
+		IMAGE_CODE_WIDTH = imageCodeProperties.getWidth();
+		// 图形验证码随机条纹数
+		IMAGE_CODE_RANDOM_LINE_CNT = imageCodeProperties.getRandomLineCnt();
+		// 图形验证码来源
+		IMAGE_CODE_SOURCE = imageCodeProperties.getSource();
+		// 图形验证码json文件名
+		IMAGE_CODE_JSON_FILE_NAME = imageCodeProperties.getJsonFileName();
+		// 字体大小
+		IMAGE_CODE_FONT_SIZE = imageCodeProperties.getFontSize();
+		// 英文字体名
+		IMAGE_CODE_FONT_EN = imageCodeProperties.getFontEn();
+		// 中文字体名
+		IMAGE_CODE_FONT_CN = imageCodeProperties.getFontCn();
+	}
 
 	/**
 	 * 发送图形验证码

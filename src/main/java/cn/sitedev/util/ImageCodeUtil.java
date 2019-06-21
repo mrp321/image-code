@@ -30,6 +30,7 @@ import net.sf.json.JSONObject;
  * @see ImageCodeUtil
  * @since
  */
+@SuppressWarnings("restriction")
 public class ImageCodeUtil {
 
 	private static final String IMAGE_FORMAT_JPG = "jpg";
@@ -103,65 +104,6 @@ public class ImageCodeUtil {
 	 * 从json文件中获取到的json内容
 	 */
 	public static JSONObject CHAR_SET_JSON = new JSONObject();
-
-	// -------------------------------------------------------------
-	// /**
-	// * 图形验证码位数
-	// */
-	// private static int IMAGE_CODE_LEN = Configuration.getInt("imageCode.length",
-	// 2);
-	//
-	// /**
-	// * 图形验证码类型:1:纯英文; 2: 纯中文
-	// */
-	// private static int IMAGE_CODE_TYPE = Configuration.getInt("imageCode.type",
-	// 2);
-	//
-	// /**
-	// * 图形验证码有效期: 单位:s
-	// */
-	// private static int IMAGE_CODE_EXPIREIN =
-	// Configuration.getInt("imageCode.expireIn", 60);
-	//
-	// /**
-	// * 图形验证码高度
-	// */
-	// private static int IMAGE_CODE_HEIGHT =
-	// Configuration.getInt("imageCode.height", 23);
-	//
-	// /**
-	// * 图形验证码宽度
-	// */
-	// private static int IMAGE_CODE_WIDTH = Configuration.getInt("imageCode.width",
-	// 67);
-	//
-	// /**
-	// * 图形验证码随机条纹数
-	// */
-	// private static int IMAGE_CODE_RANDOM_LINE_CNT =
-	// Configuration.getInt("imageCode.randomLineCnt",
-	// 155);
-	//
-	// /**
-	// * 图形验证码来源
-	// */
-	// private static int IMAGE_CODE_SOURCE =
-	// Configuration.getInt("imageCode.source",
-	// DEFAULT_SOURCE_RANDOM_GENERATE);
-	//
-	// /**
-	// * 图形验证码json文件名
-	// */
-	// private static String IMAGE_CODE_JSON_FILE_NAME = Configuration.getString(
-	// "imageCode.jsonFileName", DEFAULT_JSON_FILE_NAME);
-	//
-	// /**
-	// * 字体大小
-	// */
-	// private static final Integer IMAGE_CODE_FONT_SIZE =
-	// Configuration.getInt("imageCode.fontSize",
-	// DEFAULT_FONT_SIZE);
-	// ------------------------------------------------------------------
 
 	/**
 	 * 生成图片验证码
